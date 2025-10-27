@@ -1,4 +1,5 @@
 import { GlobalStyles } from '../components/UI/GlobalStyles'
+import { SearchBarContainer } from '../containers/SearchBarContainer'
 import * as S from './app.styles'
 
 export const App = () => {
@@ -6,7 +7,9 @@ export const App = () => {
     <>
       <GlobalStyles />
 
-      <S.Wrapper></S.Wrapper>
+      <S.Wrapper>
+        <SearchBarContainer />
+      </S.Wrapper>
     </>
   )
 }
