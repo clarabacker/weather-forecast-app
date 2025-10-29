@@ -25,7 +25,7 @@ export const Wrapper = styled.div`
 
   @media (${breakpoints.desktop}) {
     max-width: 100%;
-    padding: 1.5em;
+    padding: 1.5em 2.5em;
   }
 `
 
@@ -48,12 +48,15 @@ export const Temperature = styled.h2`
 `
 
 export const WeatherStatus = styled.div`
-  font-size: 1.3em;
+  font-size: 1.2em;
   color: #ffffff;
+  word-break: break-word;
 `
 
 export const WrapperLocation = styled.div`
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   gap: 0.5em;
   margin-top: 1em;
   font-size: 1.1em;
@@ -61,8 +64,10 @@ export const WrapperLocation = styled.div`
 `
 
 export const LocationName = styled.span`
-  font-size: 1em;
   display: flex;
+  max-width: 70%;
+  font-size: 0.9em;
+  word-break: break-word;
 `
 
 export const LocationIcon = styled(FaLocationDot)`
