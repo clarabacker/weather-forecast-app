@@ -41,7 +41,7 @@ export const IconWrapper = styled.div<IconWrapperProps>`
         case 'small':
           return 'font-size: 1.5em'
         case 'medium':
-          return 'font-size: 2em'
+          return 'font-size: 1.8em'
         case 'large':
           return 'font-size: 2.5em'
       }
@@ -58,17 +58,20 @@ export const Header = styled.div`
 `
 
 export const Label = styled.h3`
-  width: min-content;
   display: inline-block;
+  width: fit-content;
+  max-width: 60%;
+  text-align: center;
   font-weight: bold;
   color: #000000;
+  word-break: break-word;
 `
 
 export const Content = styled.div<{ $unit: string }>`
-  width: 100%;
   display: flex;
   justify-content: center;
   gap: ${({ $unit }) => ($unit === '%' ? '0' : '0.2em')};
+  width: 100%;
 `
 
 export const Value = styled.span`
@@ -77,6 +80,6 @@ export const Value = styled.span`
 `
 
 export const Unit = styled.span<{ $unit: string }>`
-  font-size: ${({ $unit }) => ($unit === '°C' ? '0.95em' : '1.2em')};
+  font-size: ${({ $unit }) => ($unit === '°C' ? '0.9em' : '1.2em')};
   color: #000000;
 `
