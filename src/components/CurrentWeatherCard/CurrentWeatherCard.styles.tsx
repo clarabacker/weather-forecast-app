@@ -1,7 +1,6 @@
 import { FaLocationDot } from 'react-icons/fa6'
 import styled from 'styled-components'
 
-import sunnyIcon from '../../assets/sunny.png'
 import { breakpoints } from '../UI/breakpoints'
 
 export const Wrapper = styled.div`
@@ -87,10 +86,7 @@ export const WrapperWeatherIcon = styled.div`
   }
 `
 
-export const WeatherIcon = styled.div`
-  background-image: url(${sunnyIcon});
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
+export const WeatherIcon = styled.img`
+  width: 6em;
+  height: auto;
 `

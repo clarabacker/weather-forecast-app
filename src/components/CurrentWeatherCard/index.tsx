@@ -4,12 +4,14 @@ interface CurrentWeatherCardProps {
   temperature: number
   weatherStatus: string
   location: string
+  iconSrc: string
 }
 
 export const CurrentWeatherCard = ({
   temperature,
   weatherStatus,
   location,
+  iconSrc,
 }: CurrentWeatherCardProps) => {
   return (
     <S.Wrapper>
@@ -23,7 +25,7 @@ export const CurrentWeatherCard = ({
       </S.WeatherInfo>
 
       <S.WrapperWeatherIcon>
-        <S.WeatherIcon></S.WeatherIcon>
+        <S.WeatherIcon src={iconSrc} alt={weatherStatus}></S.WeatherIcon>
       </S.WrapperWeatherIcon>
     </S.Wrapper>
   )

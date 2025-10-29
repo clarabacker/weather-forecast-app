@@ -5,11 +5,17 @@ import * as S from './SearchBar.styles'
 interface SearchBarProps {
   cidade: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onSearch: () => void
 }
 
-export const SearchBar = ({ cidade, onChange }: SearchBarProps) => {
+export const SearchBar = ({ cidade, onChange, onSearch }: SearchBarProps) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    onSearch()
+  }
+
   return (
-    <S.Wrapper>
+    <S.Wrapper onSubmit={handleSubmit}>
       <S.Input
         type="text"
         name="cidade"
@@ -18,7 +24,7 @@ export const SearchBar = ({ cidade, onChange }: SearchBarProps) => {
         onChange={onChange}
       />
 
-      <S.SearchIcon />
+      <S.SearchIcon onClick={onSearch} />
     </S.Wrapper>
   )
 }
