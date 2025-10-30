@@ -30,7 +30,7 @@ export const Input = styled.input`
   &:active,
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #0070f3;
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colorSearchBar || '#0070f3'};
   }
 `
 

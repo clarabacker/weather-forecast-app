@@ -13,10 +13,12 @@ export const Wrapper = styled.div`
   width: 100%;
   max-width: 600px;
   min-height: 200px;
-  background-color: #63a5f3;
-  box-shadow:
-    rgba(0, 0, 0, 0.3) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+  background: ${({ theme }) => theme.cardBg};
+  backdrop-filter: blur(24px);
+  border-radius: 40px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
   @media (${breakpoints.mobileSmall}) {
     padding: 1.5em;
@@ -40,7 +42,7 @@ export const WeatherInfo = styled.div`
 export const Temperature = styled.h2`
   font-size: 4em;
   font-weight: 500;
-  color: #ffffff;
+  color: ${({ theme }) => theme.textPrimary};
 
   @media (${breakpoints.desktop}) {
     font-size: 3.5em;
@@ -49,7 +51,7 @@ export const Temperature = styled.h2`
 
 export const WeatherStatus = styled.div`
   font-size: 1.2em;
-  color: #ffffff;
+  color: ${({ theme }) => theme.textSecondary};
   word-break: break-word;
 `
 
@@ -67,14 +69,14 @@ export const LocationName = styled.span`
   max-width: 70%;
   font-size: 0.9em;
   font-weight: 500;
-  color: #ffffff;
+  color: ${({ theme }) => theme.textSecondary};
   text-align: left;
   word-break: break-word;
 `
 
 export const LocationIcon = styled(IoLocationOutline)`
   font-size: 1.2em;
-  color: #ffffff;
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 export const WrapperWeatherIcon = styled.div`

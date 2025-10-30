@@ -11,8 +11,7 @@ export const Wrapper = styled.div`
   min-height: 100vh;
   width: 100%;
   padding: 30px;
-  background-color: #83b9fc;
-  background-size: cover;
+  background: ${({ theme }) => theme.background};
 
   @media (${breakpoints.mobile320}) {
     padding: 20px;
@@ -24,5 +23,16 @@ export const Wrapper = styled.div`
     min-height: min-content;
     padding: 30px;
     border-radius: 20px;
+  }
+`
+export const Title = styled.h1`
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5em;
+  font-weight: 700;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+
+  @media (${breakpoints.mobile768}) {
+    font-size: 3.75rem;
   }
 `

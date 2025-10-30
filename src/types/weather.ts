@@ -7,6 +7,7 @@ export interface WeatherData {
     humidity: number
   }
   weather: {
+    main: string
     description: string
     icon: string
   }[]

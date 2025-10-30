@@ -28,25 +28,29 @@ export const WeatherDetailsGrid: React.FC<WeatherDetailsGridProps> = ({
         label="Temp. máx"
         value={maxTemp}
         unit="°C"
-        icon={<LiaTemperatureHighSolid color="red" />}
+        icon={<LiaTemperatureHighSolid color="#dc2626" />}
+        bgColor="#eeb4be"
       />
       <WeatherDetailCard
         label="Temp. mín"
         value={minTemp}
         unit="°C"
-        icon={<LiaTemperatureLowSolid color="blue" />}
+        icon={<LiaTemperatureLowSolid color="#0004e4" />}
+        bgColor="#488dff"
       />
       <WeatherDetailCard
         label="Umidade"
         value={humidity}
         unit="%"
-        icon={<IoWater color="blue" />}
+        icon={<IoWater color="#0004e4" />}
+        bgColor="#488dff"
       />
       <WeatherDetailCard
         label="Vento"
         value={windSpeed}
         unit="km/h"
-        icon={<BsWind />}
+        icon={<BsWind color="#014a43" />}
+        bgColor="#8ccec6"
         iconSize="small"
       />
     </S.Grid>

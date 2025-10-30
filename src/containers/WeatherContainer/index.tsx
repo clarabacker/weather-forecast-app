@@ -6,13 +6,31 @@ import { SearchBar } from '../../components/SearchBar'
 import { WeatherDetailsGrid } from '../../components/WeatherDetailsGrid'
 import { weatherIcons } from '../../helpers/weatherIcons'
 import { useWeather } from '../../hooks/useWeather'
+import { getWeatherTheme } from '../../themes/weatherThemes'
 import { roundNumber } from '../../utils/number'
 import { capitalizeAllWords } from '../../utils/string'
 
-export const WeatherContainer = () => {
+interface WeatherContainerProps {
+  setTheme: (theme: any) => void
+}
+
+export const WeatherContainer: React.FC<WeatherContainerProps> = ({
+  setTheme,
+}) => {
   const [cidade, setCidade] = useState('')
   const { data, loading, error, fetchWeather } = useWeather()
   const [searchParams, setSearchParams] = useSearchParams()
+
+  useEffect(() => {
+    if (data) {
+      const newTheme = getWeatherTheme(
+        data.weather[0].main,
+        data.weather[0].icon
+      )
+      setTheme(newTheme)
+      console.log('tema:', newTheme)
+    }
+  }, [data, setTheme])
 
   useEffect(() => {
     const cidadeParam = searchParams.get('cidade')

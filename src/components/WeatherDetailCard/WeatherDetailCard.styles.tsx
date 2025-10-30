@@ -1,9 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { breakpoints } from '../UI/breakpoints'
 
 interface IconWrapperProps {
   color?: string
+  $bgColor?: string
   size?: 'small' | 'medium' | 'large'
 }
 
@@ -15,10 +16,11 @@ export const Wrapper = styled.div`
   gap: 1em;
   padding: 1em;
   border-radius: 10px;
-  background-color: #ffffff;
-  box-shadow:
-    rgba(0, 0, 0, 0.3) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  background: ${({ theme }) => theme.accent};
+  backdrop-filter: blur(24px);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
   @media (${breakpoints.desktop}) {
     gap: 0.8em;
@@ -31,6 +33,14 @@ export const IconWrapper = styled.div<IconWrapperProps>`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  background-color: ${({ $bgColor }) => $bgColor || 'transparent'};
+  border-radius: 8px;
+
+  ${({ size }) =>
+    size === 'small' &&
+    css`
+      padding: 2px;
+    `}
 
   svg {
     width: 100%;
@@ -63,7 +73,7 @@ export const Label = styled.h3`
   max-width: 60%;
   text-align: center;
   font-weight: bold;
-  color: #000000;
+  color: ${({ theme }) => theme.textSecondary};
   word-break: break-word;
 `
 
@@ -76,10 +86,10 @@ export const Content = styled.div<{ $unit: string }>`
 
 export const Value = styled.span`
   font-size: 1.2em;
-  color: #000000;
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 export const Unit = styled.span<{ $unit: string }>`
   font-size: ${({ $unit }) => ($unit === '°C' ? '0.9em' : '1.2em')};
-  color: #000000;
+  color: ${({ theme }) => theme.textPrimary};
 `

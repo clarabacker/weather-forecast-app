@@ -8,6 +8,7 @@ interface WeatherDetailCardProps {
   unit: string
   icon: React.ReactNode
   iconSize?: 'small' | 'medium' | 'large'
+  bgColor: string
 }
 
 export const WeatherDetailCard: React.FC<WeatherDetailCardProps> = ({
@@ -16,11 +17,14 @@ export const WeatherDetailCard: React.FC<WeatherDetailCardProps> = ({
   unit,
   icon,
   iconSize = 'medium',
+  bgColor = 'transparent',
 }) => {
   return (
     <S.Wrapper>
       <S.Header>
-        <S.IconWrapper size={iconSize}>{icon}</S.IconWrapper>
+        <S.IconWrapper size={iconSize} $bgColor={bgColor}>
+          {icon}
+        </S.IconWrapper>
         <S.Label>{label}</S.Label>
       </S.Header>
 
