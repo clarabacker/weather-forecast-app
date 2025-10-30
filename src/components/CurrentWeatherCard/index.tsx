@@ -19,8 +19,8 @@ export const CurrentWeatherCard = ({
         <S.Temperature>{temperature}°</S.Temperature>
         <S.WeatherStatus>{weatherStatus}</S.WeatherStatus>
         <S.WrapperLocation>
-          <S.LocationName>{location}</S.LocationName>
           <S.LocationIcon />
+          <S.LocationName>{location}</S.LocationName>
         </S.WrapperLocation>
       </S.WeatherInfo>
 

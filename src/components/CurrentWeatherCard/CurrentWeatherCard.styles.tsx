@@ -1,4 +1,4 @@
-import { FaLocationDot } from 'react-icons/fa6'
+import { IoLocationOutline } from 'react-icons/io5'
 import styled from 'styled-components'
 
 import { breakpoints } from '../UI/breakpoints'
@@ -39,6 +39,7 @@ export const WeatherInfo = styled.div`
 
 export const Temperature = styled.h2`
   font-size: 4em;
+  font-weight: 500;
   color: #ffffff;
 
   @media (${breakpoints.desktop}) {
@@ -54,11 +55,10 @@ export const WeatherStatus = styled.div`
 
 export const WrapperLocation = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   gap: 0.5em;
   margin-top: 1em;
-  font-size: 1.1em;
   color: #ffffff;
 `
 
@@ -66,10 +66,14 @@ export const LocationName = styled.span`
   display: flex;
   max-width: 70%;
   font-size: 0.9em;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: left;
   word-break: break-word;
 `
 
-export const LocationIcon = styled(FaLocationDot)`
+export const LocationIcon = styled(IoLocationOutline)`
+  font-size: 1.2em;
   color: #ffffff;
 `
 
