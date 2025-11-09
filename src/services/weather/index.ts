@@ -15,8 +15,14 @@ export const WeatherService = {
     const response = await fetch(url)
     const data = await response.json()
 
-    if (!response.ok || data.cod === '404') {
-      throw new Error('Cidade não encontrada.')
+    if (!response.ok) {
+      if (response.status === 404) {
+        throw new Error('Cidade não encontrada.')
+      } else {
+        throw new Error(
+          'Não foi possível carregar o clima no momento. Tente novamente mais tarde.'
+        )
+      }
     }
 
     return data
