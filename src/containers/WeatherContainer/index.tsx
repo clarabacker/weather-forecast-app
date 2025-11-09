@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { IoWarning } from 'react-icons/io5'
 import { useSearchParams } from 'react-router-dom'
 
 import { CurrentWeatherCard } from '../../components/CurrentWeatherCard'
@@ -6,6 +7,7 @@ import { SearchBar } from '../../components/SearchBar'
 import { WeatherDetailsGrid } from '../../components/WeatherDetailsGrid'
 import { weatherIcons } from '../../helpers/weatherIcons'
 import { useWeather } from '../../hooks/useWeather'
+import { useWeatherMock } from '../../hooks/useWeatherMock'
 import { getWeatherTheme } from '../../themes/weatherThemes'
 import { roundNumber } from '../../utils/number'
 import { capitalizeAllWords } from '../../utils/string'
@@ -18,7 +20,13 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
   setTheme,
 }) => {
   const [cidade, setCidade] = useState('')
-  const { data, loading, error, fetchWeather } = useWeather()
+  const [useMock, setUseMock] = useState(false)
+
+  const useMockEnv = import.meta.env.VITE_USE_MOCK === 'true'
+  const realWeather = useWeather()
+  const mockWeather = useWeatherMock()
+  const { data, loading, error } = useMock ? mockWeather : realWeather
+
   const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
@@ -36,7 +44,7 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
     const cidadeParam = searchParams.get('cidade')
     if (cidadeParam) {
       setCidade(cidadeParam)
-      fetchWeather(cidadeParam)
+      handleFetch(cidadeParam)
     }
   }, [])
 
@@ -44,11 +52,25 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
     setCidade(e.target.value)
   }
 
+  const handleFetch = async (city: string) => {
+    const trimmed = city.trim()
+    if (!trimmed) return
+
+    if (useMockEnv) {
+      console.log('Usando mock (definido em .env)')
+      setUseMock(true)
+      await mockWeather.fetchWeather(trimmed)
+      return
+    }
+
+    await realWeather.fetchWeather(trimmed)
+  }
+
   const handleSearch = () => {
     const trimmedCity = cidade.trim()
     if (!trimmedCity) return
 
-    fetchWeather(trimmedCity)
+    handleFetch(trimmedCity)
 
     setSearchParams({ cidade: trimmedCity })
   }
@@ -65,6 +87,13 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
       />
 
       {loading && <p>Carregando...</p>}
+
+      {!loading && useMock && (
+        <p>
+          <IoWarning></IoWarning> Usando dados simulados (mock)
+        </p>
+      )}
+
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       {data && (
