@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { breakpoints } from '../components/UI/breakpoints'
 
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

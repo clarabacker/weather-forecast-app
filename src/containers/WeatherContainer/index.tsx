@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { IoWarning } from 'react-icons/io5'
 import { useSearchParams } from 'react-router-dom'
 
 import { CurrentWeatherCard } from '../../components/CurrentWeatherCard'
 import { SearchBar } from '../../components/SearchBar'
+import { Alert } from '../../components/UI/Alert'
 import { WeatherDetailsGrid } from '../../components/WeatherDetailsGrid'
 import { weatherIcons } from '../../helpers/weatherIcons'
 import { useWeather } from '../../hooks/useWeather'
@@ -80,6 +80,14 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
 
   return (
     <>
+      {!loading && useMock && (
+        <Alert severity="warning" isClosable={true}>
+          Usando dados simulados (mock)
+        </Alert>
+      )}
+
+      {error && <Alert severity="error">{error}</Alert>}
+
       <SearchBar
         cidade={cidade}
         onChange={handleChange}
@@ -87,14 +95,6 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
       />
 
       {loading && <p>Carregando...</p>}
-
-      {!loading && useMock && (
-        <p>
-          <IoWarning></IoWarning> Usando dados simulados (mock)
-        </p>
-      )}
-
-      {error && <p style={{ color: 'red' }}>{error}</p>}
 
       {data && (
         <>
