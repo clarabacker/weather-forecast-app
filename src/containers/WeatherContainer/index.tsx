@@ -50,6 +50,7 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
   useEffect(() => {
     const cidadeParam = searchParams.get('cidade')
     if (cidadeParam) {
+      setTheme(getWeatherTheme('loading'))
       setCidade(cidadeParam)
       handleFetch(cidadeParam)
     }
@@ -98,8 +99,8 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
       return
     }
 
+    setTheme(getWeatherTheme('loading'))
     handleFetch(trimmedCity)
-
     setSearchParams({ cidade: trimmedCity })
   }
 
@@ -128,7 +129,7 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
 
       {loading && <p>Carregando...</p>}
 
-      {data && (
+      {!loading && data && (
         <>
           <CurrentWeatherCard
             temperature={roundNumber(data.main.temp)}
