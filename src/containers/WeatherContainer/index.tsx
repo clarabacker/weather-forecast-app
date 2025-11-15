@@ -42,8 +42,10 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
       )
       setTheme(newTheme)
       console.log('tema:', newTheme)
+    } else if (error) {
+      setTheme(getWeatherTheme('default'))
     }
-  }, [data, setTheme])
+  }, [data, error, setTheme])
 
   useEffect(() => {
     const cidadeParam = searchParams.get('cidade')
