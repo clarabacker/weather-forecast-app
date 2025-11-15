@@ -7,7 +7,7 @@ import { getWeatherTheme } from '../themes/weatherThemes'
 import * as S from './app.styles'
 
 export const App = () => {
-  const [theme, setTheme] = useState(getWeatherTheme('clear'))
+  const [theme, setTheme] = useState(getWeatherTheme('default'))
 
   return (
     <ThemeProvider theme={theme}>
