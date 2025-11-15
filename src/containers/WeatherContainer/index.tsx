@@ -21,6 +21,10 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
 }) => {
   const [cidade, setCidade] = useState('')
   const [useMock, setUseMock] = useState(false)
+  const [lastFailedCity, setLastFailedCity] = useState<string | null>(null)
+  const [lastRequestedCity, setLastRequestedCity] = useState<string | null>(
+    null
+  )
 
   const useMockEnv = import.meta.env.VITE_USE_MOCK === 'true'
   const realWeather = useWeather()
@@ -48,6 +52,16 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
     }
   }, [])
 
+  useEffect(() => {
+    if (!loading && lastRequestedCity) {
+      if (error) {
+        setLastFailedCity(lastRequestedCity)
+      } else {
+        setLastFailedCity(null)
+      }
+    }
+  }, [loading, error, lastRequestedCity])
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCidade(e.target.value)
   }
@@ -55,6 +69,8 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
   const handleFetch = async (city: string) => {
     const trimmed = city.trim()
     if (!trimmed) return
+
+    setLastRequestedCity(trimmed)
 
     if (useMockEnv) {
       console.log('Usando mock (definido em .env)')
@@ -72,6 +88,8 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
     if (!trimmedCity) return
 
     if (trimmedCity === data?.name) return
+
+    if (trimmedCity === lastFailedCity) return
 
     handleFetch(trimmedCity)
 
