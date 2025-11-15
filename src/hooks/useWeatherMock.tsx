@@ -19,7 +19,7 @@ export const useWeatherMock = () => {
         throw new Error('Digite uma cidade para pesquisar.')
       }
 
-      await new Promise((resolve) => setTimeout(resolve, 300))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
 
       const mock = weatherMocks[key]
 
