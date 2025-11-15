@@ -8,12 +8,14 @@ import * as S from './Alert.styles'
 interface AlertProps {
   severity: 'success' | 'error' | 'warning' | 'info'
   isClosable?: boolean
+  shake?: boolean
   children: React.ReactNode
 }
 
 export const Alert: React.FC<AlertProps> = ({
   severity,
   isClosable = false,
+  shake = false,
   children,
 }) => {
   const [visible, setVisible] = useState(true)
@@ -23,7 +25,7 @@ export const Alert: React.FC<AlertProps> = ({
   if (!visible) return null
 
   return (
-    <S.Wrapper $severity={severity}>
+    <S.Wrapper $severity={severity} $shake={shake}>
       <S.SeverityIconWrapper>
         {severity === 'error' && <MdErrorOutline></MdErrorOutline>}
         {severity === 'warning' && <PiWarning></PiWarning>}

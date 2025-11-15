@@ -1,7 +1,8 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 interface WrapperProps {
   $severity: 'success' | 'error' | 'warning' | 'info'
+  $shake?: boolean
 }
 
 const severityStyles = {
@@ -35,6 +36,14 @@ const fadeIn = keyframes`
     top: 1.2em;
   }
 `
+const shake = keyframes`
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+`
 
 export const Wrapper = styled.div<WrapperProps>`
   position: absolute;
@@ -57,6 +66,14 @@ export const Wrapper = styled.div<WrapperProps>`
   }
 
   animation: ${fadeIn} 0.5s ease-in-out;
+
+  ${({ $shake }) =>
+    $shake &&
+    css`
+      animation:
+        ${fadeIn} 0.5s ease-in-out,
+        ${shake} 0.3s ease-in-out;
+    `}
 `
 
 export const SeverityIconWrapper = styled.div`
