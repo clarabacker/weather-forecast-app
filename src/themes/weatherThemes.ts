@@ -71,9 +71,22 @@ export const weatherThemes = {
     accent: 'rgba(255, 255, 255, 0.2)',
     colorSearchBar: '#0070f3',
   },
+  loading: {
+    background: 'linear-gradient(to bottom right, #d1d5db, #e5e7eb, #f3f4f6)',
+    cardBg:
+      'linear-gradient(to bottom right, rgba(229, 231, 235, 0.8), rgba(243, 244, 246, 0.8))',
+    textPrimary: '#9ca3af',
+    textSecondary: '#cbd5e1',
+    accent: 'rgba(255, 255, 255, 0.2)',
+    colorSearchBar: '#9ca3af',
+  },
 }
 
 export const getWeatherTheme = (weatherMain: string, iconCode?: string) => {
+  if (weatherMain === 'loading') {
+    return weatherThemes.loading
+  }
+
   const main = weatherMain?.toLowerCase()
   const isNight = iconCode?.endsWith('n')
 
