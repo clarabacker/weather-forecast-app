@@ -68,7 +68,10 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
 
   const handleSearch = () => {
     const trimmedCity = cidade.trim()
+
     if (!trimmedCity) return
+
+    if (trimmedCity === data?.name) return
 
     handleFetch(trimmedCity)
 
