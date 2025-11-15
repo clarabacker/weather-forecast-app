@@ -18,15 +18,15 @@ export const CurrentWeatherCard = ({
       <S.WeatherInfo>
         <S.Temperature>{temperature}°</S.Temperature>
         <S.WeatherStatus>{weatherStatus}</S.WeatherStatus>
-        <S.WrapperLocation>
+        <S.LocationWrapper>
           <S.LocationIcon />
           <S.LocationName>{location}</S.LocationName>
-        </S.WrapperLocation>
+        </S.LocationWrapper>
       </S.WeatherInfo>
 
-      <S.WrapperWeatherIcon>
+      <S.WeatherIconWrapper>
         <S.WeatherIcon src={iconSrc} alt={weatherStatus}></S.WeatherIcon>
-      </S.WrapperWeatherIcon>
+      </S.WeatherIconWrapper>
     </S.Wrapper>
   )
 }

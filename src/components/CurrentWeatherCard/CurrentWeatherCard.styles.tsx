@@ -55,7 +55,7 @@ export const WeatherStatus = styled.div`
   word-break: break-word;
 `
 
-export const WrapperLocation = styled.div`
+export const LocationWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -79,7 +79,7 @@ export const LocationIcon = styled(IoLocationOutline)`
   color: ${({ theme }) => theme.textSecondary};
 `
 
-export const WrapperWeatherIcon = styled.div`
+export const WeatherIconWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
