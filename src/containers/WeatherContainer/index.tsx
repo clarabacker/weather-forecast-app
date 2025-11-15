@@ -25,6 +25,7 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
   const [lastRequestedCity, setLastRequestedCity] = useState<string | null>(
     null
   )
+  const [shakeAlert, setShakeAlert] = useState(false)
 
   const useMockEnv = import.meta.env.VITE_USE_MOCK === 'true'
   const realWeather = useWeather()
@@ -89,7 +90,11 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
 
     if (trimmedCity === data?.name) return
 
-    if (trimmedCity === lastFailedCity) return
+    if (trimmedCity === lastFailedCity) {
+      setShakeAlert(true)
+      setTimeout(() => setShakeAlert(false), 300)
+      return
+    }
 
     handleFetch(trimmedCity)
 
@@ -107,7 +112,11 @@ export const WeatherContainer: React.FC<WeatherContainerProps> = ({
         </Alert>
       )}
 
-      {error && <Alert severity="error">{error}</Alert>}
+      {error && (
+        <Alert severity="error" shake={shakeAlert}>
+          {error}{' '}
+        </Alert>
+      )}
 
       <SearchBar
         cidade={cidade}
